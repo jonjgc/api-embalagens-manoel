@@ -1,9 +1,13 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { PackagingService } from './packaging.service';
 import { ProcessarPedidosDto } from './dto/processar-pedidos.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiKeyGuard } from '../auth/api-key/api-key.guard';
+import { ApiSecurity } from '@nestjs/swagger';
 
 @ApiTags('packaging')
+@ApiSecurity('x-api-key')
+@UseGuards(ApiKeyGuard)
 @Controller('packaging')
 export class PackagingController {
   constructor(private readonly packagingService: PackagingService) {}
