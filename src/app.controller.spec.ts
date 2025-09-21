@@ -1,22 +1,33 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PackagingController } from './packaging/packaging.controller';
+import { PackagingService } from './packaging/packaging.service';
+import { ApiKeyGuard } from './auth/api-key/api-key.guard';
+import { ConfigService } from '@nestjs/config';
 
-describe('AppController', () => {
-  let appController: AppController;
+describe('PackagingController', () => {
+  let controller: PackagingController;
 
   beforeEach(async () => {
-    const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [PackagingController],
+      providers: [
+        PackagingService,
+        // 3. Adicione as dependências do Guard abaixo
+        ApiKeyGuard,
+        {
+          provide: ConfigService,
+          useValue: {
+            // Criamos um mock simples para o ConfigService
+            get: jest.fn().mockReturnValue('uma-chave-qualquer'),
+          },
+        },
+      ],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    controller = module.get<PackagingController>(PackagingController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
   });
 });
