@@ -1,98 +1,159 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API de Embalagens - Desafio Seu Manoel
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Esta é uma API desenvolvida em Node.js com o framework NestJS como solução para otimização de empacotamento. A API recebe uma lista de pedidos com produtos e suas dimensões, e retorna a melhor forma de embalá-los utilizando um conjunto de caixas pré-definidas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+-   **Otimização de Empacotamento**: Utiliza uma heurística para alocar produtos em caixas, buscando minimizar o número de caixas utilizadas.
+-   **API Segura**: O endpoint principal é protegido por um sistema de Chave de API (API Key).
+-   **Documentação Interativa**: A API conta com documentação automática e interativa gerada com Swagger.
+-   **Pronto para Produção**: O projeto é totalmente containerizado com Docker, garantindo um ambiente de execução consistente e de fácil implantação.
+-   **Validação de Dados**: Os dados de entrada são validados para garantir a integridade das requisições.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tecnologias Utilizadas
 
-## Project setup
+-   **Backend**: Node.js, NestJS, TypeScript
+-   **Containerização**: Docker, Docker Compose
+-   **Testes**: Jest
+-   **Documentação**: Swagger
+-   **Qualidade de Código**: ESLint, Prettier
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Como Executar o Projeto
 
-```bash
-# development
-$ npm run start
+Você pode executar este projeto de duas maneiras: utilizando Docker ou localmente.
 
-# watch mode
-$ npm run start:dev
+### Pré-requisitos
 
-# production mode
-$ npm run start:prod
-```
+Antes de começar, garanta que você tenha as seguintes ferramentas instaladas na sua máquina:
 
-## Run tests
+-   [Git](https://git-scm.com/)
+-   [Docker](https://www.docker.com/products/docker-desktop/) e [Docker Compose](https://docs.docker.com/compose/install/)
+-   [Node.js v18+](https://nodejs.org/en/) e [npm](https://www.npmjs.com/) (para o método de execução local)
+
+---
+
+###  Passo a Passo para Execução
+
+#### 1. Clone o Repositório
+
+Abra seu terminal e clone este repositório para a sua máquina local:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone <https://github.com/jonjgc/api-embalagens-manoel.git>
+cd api-embalagens-manoel
 ```
 
-## Deployment
+#### 2. Configure as Variáveis de Ambiente
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+O projeto utiliza um arquivo `.env` para gerenciar variáveis sensíveis, como a chave da API.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Crie um arquivo chamado `.env` na raiz do projeto e adicione o seguinte conteúdo:
+
+```env
+# .env
+API_KEY="SEU_MANOEL_SUPER_SECRETO"
+```
+
+Esta será a chave que você usará para autenticar suas requisições na API.
+
+#### 3. Execute a Aplicação
+
+##### Método 1: Usando Docker (Recomendado)
+
+Esta é a forma mais simples e rápida de subir a aplicação, pois todo o ambiente já está configurado.
+
+No terminal, na raiz do projeto, execute o seguinte comando:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker-compose up --build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+O Docker irá construir a imagem da aplicação e iniciar o container. Ao final do processo, a API estará rodando e acessível em `http://localhost:3000`.
 
-## Resources
+##### Método 2: Executando Localmente
 
-Check out a few resources that may come in handy when working with NestJS:
+Se preferir não usar o Docker, você pode rodar a aplicação diretamente na sua máquina.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+1.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
 
-## Support
+2.  **Inicie a aplicação em modo de desenvolvimento:**
+    ```bash
+    npm run start:dev
+    ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+A API estará rodando e acessível em `http://localhost:3000`.
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Testando a API
 
-## License
+Após iniciar a aplicação, você pode testá-la de duas formas:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 1. Usando a Documentação Swagger
+
+A forma mais fácil de testar é através da documentação interativa. Abra seu navegador e acesse:
+
+**`http://localhost:3000/api`**
+
+-   Clique no botão `Authorize` no canto superior direito e insira o valor da sua `API_KEY` (`SEU_MANOEL_SUPER_SECRETO`).
+-   Encontre o endpoint `POST /packaging/process`, clique em "Try it out".
+-   Edite o corpo da requisição (Request body) com os dados do seu pedido e clique em "Execute".
+
+### 2. Usando um Cliente de API (Insomnia, Postman, etc.)
+
+-   **Método**: `POST`
+-   **URL**: `http://localhost:3000/packaging/process`
+-   **Headers**:
+    -   `Content-Type`: `application/json`
+    -   `x-api-key`: `SEU_MANOEL_SUPER_SECRETO` (o valor do seu arquivo `.env`)
+
+-   **Body (Exemplo)**:
+    ```json
+    {
+      "pedidos": [
+        {
+          "id_pedido": "pedido_exemplo_1",
+          "produtos": [
+            {
+              "id": "produto_A",
+              "altura": 10,
+              "largura": 20,
+              "comprimento": 30
+            },
+            {
+              "id": "produto_B",
+              "altura": 40,
+              "largura": 40,
+              "comprimento": 30
+            }
+          ]
+        },
+        {
+          "id_pedido": "pedido_exemplo_2",
+          "produtos": [
+            {
+              "id": "produto_C",
+              "altura": 60,
+              "largura": 70,
+              "comprimento": 40
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+---
+
+## Executando os Testes Unitários
+
+Para garantir a qualidade e o funcionamento correto da lógica de negócio, você pode executar a suíte de testes unitários com o seguinte comando:
+
+```bash
+npm run test
+```
