@@ -157,3 +157,5 @@ Para garantir a qualidade e o funcionamento correto da lógica de negócio, voc�
 ```bash
 npm run test
 ```
+
+## Importante: A resposta da tarefa 2 está na raiz deste projeto, o nome do arquivo é "Exercício 2.pdf"
